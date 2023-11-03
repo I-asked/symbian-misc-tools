@@ -1,0 +1,5 @@
+= Misc. Symbian Tools
+
+CAUTION: WORK IN PROGRESS!!!
+
+You'll need to run `sdk.sh` (without any parameters) from link:https://github.com/I-asked/symbian-docker/[symbian-docker] at least once to use `*.run` scripts.
