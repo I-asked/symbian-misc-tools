@@ -27,7 +27,15 @@ OCI_EXE="${OCI_EXE:?neither docker nor podman are available on this system}"
 
 OCI_IMAGE=symbian
 
-WORKDIR="${1:-$(realpath "${PWD}")}"
-(( "$#" )) && shift
+INP="${1:?Input filename needed}"
+shift
+OUT="${1:?Output filename needed}"
+shift
 
-"${OCI_EXE}" run --privileged -it --rm -v "${SCRIPT_PATH}":/symbian-misc-tools -v "${WORKDIR}":/workdir "${OCI_IMAGE}" /symbian-misc-tools/une32/bin/une32.sh "$@"
+INPDIR="$(realpath -- "$(dirname -- "${INP}")")"
+OUTDIR="$(realpath -- "$(dirname -- "${OUT}")")"
+
+INPFILE="$(basename -- "${INP}")"
+OUTFILE="$(basename -- "${OUT}")"
+
+"${OCI_EXE}" run --privileged -it --rm -v "${SCRIPT_PATH}":/symbian-misc-tools -v "${INPDIR}":/inpdir -v "${OUTDIR}":/outdir "${OCI_IMAGE}" /symbian-misc-tools/sdk-run.sh /symbian-misc-tools/une32/bin/une32.sh "/inpdir/${INPFILE}" "/outdir/${OUTFILE}"

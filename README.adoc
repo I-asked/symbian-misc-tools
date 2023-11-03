@@ -3,3 +3,13 @@
 CAUTION: WORK IN PROGRESS!!!
 
 You'll need to run `sdk.sh` (without any parameters) from link:https://github.com/I-asked/symbian-docker/[symbian-docker] at least once to use `*.run` scripts.
+
+== une32
+
+Convert an E32 binary to ELF. (Hopefully; when it's done...)
+
+Usage:
+
+----
+$ ./une32.run /path/to/binary.exe /path/to/binary.elf
+----
